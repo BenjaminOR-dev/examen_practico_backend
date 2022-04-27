@@ -31,7 +31,7 @@ class TBLExamenes extends Model
 
     public function tbl_examenes_preguntas()
     {
-        return $this->hasMany(TBLExamenesPreguntas::class, 'idExamen', 'idExamen')
+        return $this->hasMany(TBLExamenesPreguntas::class, 'idExamen', 'idExamen');
     }
 
     public function tbl_preguntas()

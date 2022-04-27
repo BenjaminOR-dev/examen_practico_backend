@@ -27,7 +27,7 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $validator = Validator::make($request, [
+        $validator = Validator::make($request->all(), [
             'login' => ['required', 'string', 'exists:tbl_usuarios,login'],
             'password' => ['required', 'string']
         ]);

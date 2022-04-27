@@ -25,7 +25,7 @@ class TBLUsuarios extends Authenticatable implements JWTSubject
     /**
      * Atributos
      */
-    protected $append = [
+    protected $appends = [
         'nombre_completo'
     ];
 

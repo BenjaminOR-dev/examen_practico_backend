@@ -41,7 +41,7 @@ class TBLExamenesController extends Controller
     {
         $validator = Validator::make($request, [
             'titulo' => ['required', 'string', 'max:60'],
-            'preguntas.*' => ['required', 'array', 'exists:tbl_preguntas,cvePregunta']
+            'preguntas.*' => ['required', 'array', 'exists:tbl_preguntas,cvePregunta', 'max:4']
         ]);
 
         if ($validator->fails()) {
@@ -99,7 +99,7 @@ class TBLExamenesController extends Controller
     {
         $validator = Validator::make($request, [
             'titulo' => ['required', 'string', 'max:60', "unique:tbl_examenes,titulo,{$id},idExamen"],
-            'preguntas.*' => ['required', 'array', 'exists:tbl_preguntas,cvePregunta', 'unique:tbl_examenes_preguntas,cvePregunta']
+            'preguntas.*' => ['required', 'array', 'exists:tbl_preguntas,cvePregunta', 'unique:tbl_examenes_preguntas,cvePregunta', 'max:4']
         ]);
 
         if ($validator->fails()) {

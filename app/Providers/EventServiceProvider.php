@@ -19,9 +19,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $observers = [
-        TBLExamenes::class => [Observers\Examenes::class],
-        TBLPreguntas::class => [Observers\Preguntas::class],
-        TBLRespuestas::class => [Observers\Respuestas::class],
+        //TBLExamenes::class => [Observers\Examenes::class],
+        //TBLPreguntas::class => [Observers\Preguntas::class],
+        //TBLRespuestas::class => [Observers\Respuestas::class],
     ];
 
     /**

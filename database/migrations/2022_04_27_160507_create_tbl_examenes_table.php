@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('idUsuario')->constrained('tbl_usuarios', 'idUsuario');
             $table->string('titulo', 60);
             $table->integer('numPreguntas')->default(4);
+            $table->boolean('activo')->default(1);
             $table->timestamps();
         });
     }

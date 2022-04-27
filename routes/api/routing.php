@@ -14,3 +14,8 @@ Route::prefix('resources')
     ->name('resources.')
     ->middleware('auth:api')
     ->group(base_path('routes/api/resources.php'));
+
+Route::prefix('data')
+    ->name('data.')
+    ->middleware('auth:api')
+    ->group(base_path('routes/api/data.php'));

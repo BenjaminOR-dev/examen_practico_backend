@@ -12,4 +12,5 @@ Route::prefix('auth')
 
 Route::prefix('resources')
     ->name('resources.')
+    ->middleware('auth:api')
     ->group(base_path('routes/api/resources.php'));

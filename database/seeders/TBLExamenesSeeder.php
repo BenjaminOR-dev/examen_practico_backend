@@ -15,10 +15,13 @@ class TBLExamenesSeeder extends Seeder
      */
     public function run()
     {
-        /*
         TBLExamenes::create([
-
+            'idUsuario' => 1,
+            'titulo' => '¿Cuanto conoces a Benjamín?'
+        ])->tbl_examenes_preguntas()->createMany([
+            ['cvePregunta' => 1],
+            ['cvePregunta' => 2],
+            ['cvePregunta' => 3]
         ]);
-        */
     }
 }

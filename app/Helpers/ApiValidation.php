@@ -11,7 +11,7 @@ class ApiValidation
      *  @param String $dataName
      *  @return Response
      */
-    public static function sendErrors(Object $errors, String $dataName = '')
+    public static function sendErrors(Object|array $errors, String $dataName = '')
     {
         if ($dataName != '') {
             return response()->json(['errors' => [$dataName => $errors]], 422);

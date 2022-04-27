@@ -27,4 +27,9 @@ class TBLExamenes extends Model
     {
         return $this->hasOne(TBLUsuarios::class, 'idUsuario', 'idUsuario');
     }
+
+    public function tbl_preguntas()
+    {
+        return $this->belongsToMany(TBLPreguntas::class, TBLExamenesPreguntas::class, 'idExamen', 'idExamen');
+    }
 }

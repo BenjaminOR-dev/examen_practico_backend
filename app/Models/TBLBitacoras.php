@@ -13,9 +13,7 @@ class TBLBitacoras extends Model
     protected $primaryKey = 'idBitacora';
     protected $fillable = [
         'idUsuario',
-        'cveAccion',
-        'fechaMovimiento',
-        'fechaActualizacion',
+        'cveAccion'
     ];
 
     /**

@@ -38,7 +38,24 @@ class TBLExamenesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'numPreguntas'
+            'titulo' => ['required', 'string', 'max:60'],
+            'preguntas.*' => ['required', 'array', 'exists:tbl_preguntas,cvePregunta']
+        ]);
+
+        $preguntas = [];
+        foreach ($request->preguntas as $preguntaId) {
+            array_push($preguntas, [
+                'cvePregunta' => $preguntaId,
+            ]);
+        }
+
+        $registrar = TBLExamenes::create([
+            'idUsuario' => auth()->user()->idUsuario,
+            'titulo' => $request->titulo
+        ])->tbl_examenes_pregunta()->createMany($preguntas);
+
+        return response()->json([
+            'message' => "Se ha registrado el exámen con folio #{$registrar->idExamen}"
         ]);
     }
 

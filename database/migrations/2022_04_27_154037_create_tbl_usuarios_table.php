@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('nombre', 45);
             $table->string('paterno', 45);
             $table->string('materno', 45);
-            $table->string('login', 100);
-            $table->string('password', 100);
+            $table->string('login', 100)->unique();
+            $table->string('password', 255);
             $table->boolean('activo')->default(1);
             $table->timestamps();
         });

@@ -12,6 +12,7 @@ class TBLExamenesPreguntas extends Model
     protected $table = 'tbl_examenes_preguntas';
     protected $primaryKey = 'idExamenPregunta';
     protected $fillable = [
+        'idExamen',
         'cvePregunta',
         'activo'
     ];

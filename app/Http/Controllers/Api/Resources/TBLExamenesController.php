@@ -22,16 +22,6 @@ class TBLExamenesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -41,7 +31,7 @@ class TBLExamenesController extends Controller
     {
         $validator = Validator::make($request, [
             'titulo' => ['required', 'string', 'max:60'],
-            'preguntas.*' => ['required', 'array', 'exists:tbl_preguntas,cvePregunta', 'max:4']
+            'preguntas.*' => ['required', 'array', 'unique:tbl_examenes_preguntas,cvePregunta', 'exists:tbl_preguntas,cvePregunta', 'max:4']
         ]);
 
         if ($validator->fails()) {

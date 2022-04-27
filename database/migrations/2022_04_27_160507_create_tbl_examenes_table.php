@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('tbl_examenes', function (Blueprint $table) {
             $table->id('idExamen');
             $table->foreignId('idUsuario')->constrained('tbl_usuarios', 'idUsuario');
-            $table->integer('numPreguntas');
+            $table->string('titulo', 60);
+            $table->integer('numPreguntas')->default(4);
             $table->timestamps();
         });
     }

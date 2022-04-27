@@ -13,6 +13,7 @@ class TBLExamenes extends Model
     protected $primaryKey = 'idExamen';
     protected $fillable = [
         'idUsuario',
+        'titulo',
         'numPreguntas'
     ];
 

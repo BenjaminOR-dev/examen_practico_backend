@@ -15,4 +15,16 @@ class TBLPreguntas extends Model
         'desPregunta',
         'activo'
     ];
+
+    /**
+     * Relaciones
+     */
+    protected $with = [
+        //
+    ];
+
+    public function tbl_respuestas()
+    {
+        return $this->hasMany(TBLRespuestas::class, 'cvePregunta', 'cvePregunta');
+    }
 }

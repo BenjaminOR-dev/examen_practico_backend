@@ -13,7 +13,12 @@ class ExamenesController extends Controller
      */
     public function disponibles()
     {
-        $examenes = TBLExamenes::where('activo', 1)->get();
+        $examenes = TBLExamenes::query()
+            ->where('activo', 1)
+            ->orderBy('idExamen', 'DESC')
+            ->with(['tbl_usuarios'])
+            ->get();
+
         return response()->json($examenes);
     }
 }

@@ -2,8 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\TBLAcciones;
-use App\Models\TBLBitacoras;
+use App\Http\Helpers\Bitacora;
 use App\Models\TBLPreguntas;
 
 class Preguntas
@@ -16,14 +15,7 @@ class Preguntas
      */
     public function created(TBLPreguntas $TBLPreguntas)
     {
-        $accion = TBLAcciones::create([
-            "Se registro una nueva pregunta"
-        ]);
-
-        TBLBitacoras::create([
-            'idUsuario' => auth()->user()->idUsuario,
-            'cveAccion' => $accion->cveAccion,
-        ]);
+        Bitacora::registrar("Se registro una nueva pregunta");
     }
 
     /**
@@ -34,14 +26,7 @@ class Preguntas
      */
     public function updated(TBLPreguntas $TBLPreguntas)
     {
-        $accion = TBLAcciones::create([
-            "Se actualizó la pregunta con ID: {$TBLPreguntas->cvePregunta}"
-        ]);
-
-        TBLBitacoras::create([
-            'idUsuario' => auth()->user()->idUsuario,
-            'cveAccion' => $accion->cveAccion,
-        ]);
+        Bitacora::registrar("Se actualizó la pregunta con ID: {$TBLPreguntas->cvePregunta}");
     }
 
     /**
@@ -52,14 +37,7 @@ class Preguntas
      */
     public function deleted(TBLPreguntas $TBLPreguntas)
     {
-        $accion = TBLAcciones::create([
-            "Se eliminó la pregunta con ID: {$TBLPreguntas->cvePregunta}"
-        ]);
-
-        TBLBitacoras::create([
-            'idUsuario' => auth()->user()->idUsuario,
-            'cveAccion' => $accion->cveAccion,
-        ]);
+        Bitacora::registrar("Se eliminó la pregunta con ID: {$TBLPreguntas->cvePregunta}");
     }
 
     /**
@@ -83,4 +61,5 @@ class Preguntas
     {
         //
     }
+
 }

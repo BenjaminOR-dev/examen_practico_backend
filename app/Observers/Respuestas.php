@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\TBLAcciones;
 use App\Models\TBLBitacoras;
 use App\Models\TBLRespuestas;
+use App\Http\Helpers\Bitacora;
 
 class Respuestas
 {
@@ -16,14 +17,7 @@ class Respuestas
      */
     public function created(TBLRespuestas $TBLRespuestas)
     {
-        $accion = TBLAcciones::create([
-            "Se registro una nueva respuesta para la pregunta {$TBLRespuestas->cvePregunta}"
-        ]);
-
-        TBLBitacoras::create([
-            'idUsuario' => auth()->user()->idUsuario,
-            'cveAccion' => $accion->cveAccion,
-        ]);
+        Bitacora::registrar("Se registro una nueva respuesta para la pregunta {$TBLRespuestas->cvePregunta}");
     }
 
     /**
@@ -34,14 +28,7 @@ class Respuestas
      */
     public function updated(TBLRespuestas $TBLRespuestas)
     {
-        $accion = TBLAcciones::create([
-            "Se actualizó la respuesta con ID: {$TBLRespuestas->cveRespuesta}"
-        ]);
-
-        TBLBitacoras::create([
-            'idUsuario' => auth()->user()->idUsuario,
-            'cveAccion' => $accion->cveAccion,
-        ]);
+        Bitacora::registrar("Se actualizó la respuesta con ID: {$TBLRespuestas->cveRespuesta}");
     }
 
     /**
@@ -52,14 +39,7 @@ class Respuestas
      */
     public function deleted(TBLRespuestas $TBLRespuestas)
     {
-        $accion = TBLAcciones::create([
-            "Se eliminó la respuesta con ID: {$TBLRespuestas->cveRespuesta}"
-        ]);
-
-        TBLBitacoras::create([
-            'idUsuario' => auth()->user()->idUsuario,
-            'cveAccion' => $accion->cveAccion,
-        ]);
+        Bitacora::registrar("Se eliminó la respuesta con ID: {$TBLRespuestas->cveRespuesta}");
     }
 
     /**

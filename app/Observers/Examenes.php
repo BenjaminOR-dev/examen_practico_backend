@@ -2,9 +2,8 @@
 
 namespace App\Observers;
 
-use App\Models\TBLAcciones;
-use App\Models\TBLBitacoras;
 use App\Models\TBLExamenes;
+use App\Http\Helpers\Bitacora;
 
 class Examenes
 {
@@ -16,14 +15,7 @@ class Examenes
      */
     public function created(TBLExamenes $TBLExamenes)
     {
-        $accion = TBLAcciones::create([
-            "Se registro un nuevo examen"
-        ]);
-
-        TBLBitacoras::create([
-            'idUsuario' => auth()->user()->idUsuario,
-            'cveAccion' => $accion->cveAccion,
-        ]);
+        Bitacora::registrar("Se registró un exámen");
     }
 
     /**
@@ -34,14 +26,7 @@ class Examenes
      */
     public function updated(TBLExamenes $TBLExamenes)
     {
-        $accion = TBLAcciones::create([
-            "Se actualizó el examen con ID: {$TBLExamenes->idExamen}"
-        ]);
-
-        TBLBitacoras::create([
-            'idUsuario' => auth()->user()->idUsuario,
-            'cveAccion' => $accion->cveAccion,
-        ]);
+        Bitacora::registrar("Se actualizó el exámen con ID: {$TBLExamenes->idExamen}");
     }
 
     /**
@@ -52,14 +37,7 @@ class Examenes
      */
     public function deleted(TBLExamenes $TBLExamenes)
     {
-        $accion = TBLAcciones::create([
-            "Se eliminó el examen con ID: {$TBLExamenes->idExamen}"
-        ]);
-
-        TBLBitacoras::create([
-            'idUsuario' => auth()->user()->idUsuario,
-            'cveAccion' => $accion->cveAccion,
-        ]);
+        Bitacora::registrar("Se eliminó el exámen con ID: {$TBLExamenes->idExamen}");
     }
 
     /**
@@ -83,4 +61,5 @@ class Examenes
     {
         //
     }
+
 }

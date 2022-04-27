@@ -67,7 +67,8 @@ class TBLExamenesController extends Controller
      */
     public function show($id)
     {
-        //
+        $tbl_examen = TBLExamenes::where('idExamen', $id)->firstOrFail();
+        return response()->json($tbl_examen);
     }
 
     /**

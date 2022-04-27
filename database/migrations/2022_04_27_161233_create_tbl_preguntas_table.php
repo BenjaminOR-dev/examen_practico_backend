@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_bitacoras', function (Blueprint $table) {
-            $table->id('idBitacora');
-            $table->foreignId('idUsuario')->constrained('tbl_usuarios', 'idUsuario');
-            $table->foreignId('cveAccion')->constrained('tbl_acciones', 'cveAccion');
-            $table->mediumText('observaciones');
+        Schema::create('tbl_preguntas', function (Blueprint $table) {
+            $table->id('cvePregunta');
+            $table->string('desPregunta', 500);
+            $table->boolean('activo')->default(1);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_bitacoras');
+        Schema::dropIfExists('tbl_preguntas');
     }
 };

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class TBLAcciones extends Model
 {
     use HasFactory;
+
+    protected $table = 'tbl_acciones';
+    protected $primaryKey = 'cveAccion';
+    protected $fillable = [
+        'desAccion',
+        'activo'
+    ];
 }

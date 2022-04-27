@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Helpers\ApiValidation;
 use App\Http\Controllers\Controller;
+use App\Models\TBLUsuarios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -23,16 +25,31 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login()
+    public function login(Request $request)
     {
-        $credentials = request(['login', 'password']);
+        $validator = Validator::make($request, [
+            'login' => ['required', 'string', 'exists:tbl_usuarios,login'],
+            'password' => ['required', 'string']
+        ]);
 
-        if (! $token = auth()->attempt($credentials)) {
+        if ($validator->fails()) {
+            return ApiValidation::sendErrors($validator->errors());
+        }
+
+        $user = TBLUsuarios::where('login', $request->login)->first();
+        if (!password_verify($request->password, $user->password)) {
             return ApiValidation::sendErrors([
-                'login' => "Las credenciales son incorrectas"
+                'password' => 'La contraseña es incorrecta'
             ]);
         }
 
+        if (!$user->activo) {
+            return ApiValidation::sendErrors([
+                'login' => "Usuario bloqueado del sistema"
+            ]);
+        }
+
+        $token = auth()->login($user);
         return $this->respondWithToken($token);
     }
 

@@ -14,7 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tbl_usuarios', function (Blueprint $table) {
-            $table->id();
+            $table->id('idUsuario');
+            $table->string('nombre', 45);
+            $table->string('paterno', 45);
+            $table->string('materno', 45);
+            $table->string('login', 100);
+            $table->string('password', 100);
+            $table->boolean('activo')->default(1);
             $table->timestamps();
         });
     }

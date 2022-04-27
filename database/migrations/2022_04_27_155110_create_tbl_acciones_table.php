@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bitacoras', function (Blueprint $table) {
-            $table->id();
+        Schema::create('tbl_acciones', function (Blueprint $table) {
+            $table->id('cveAccion');
+            $table->string('desAccion', 45);
+            $table->boolean('activo')->default(1);
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bitacoras');
+        Schema::dropIfExists('t_b_l_acciones');
     }
 };
